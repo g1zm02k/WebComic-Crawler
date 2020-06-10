@@ -1,12 +1,17 @@
 #NoEnv
 #SingleInstance Force
 SetWorkingDir %A_ScriptDir%
+Menu, Tray, Icon,  %A_ScriptDir%\Icons\BH.ico
+;https://broodhollow.chainsawsuit.com/comic/2012/10/06/book-1-curious-little-thing/
 PAG := "Broodhollow"
 URL := "http://broodhollow.chainsawsuit.com/comic/2019/07/22/book-3-014/"
 CTR := 282
 RE1 := "(?-m)rel=""next"" href=""(.*?)"""
 RE2 := "(?-m)<img src=""(.*?.jpg)"""
 OLD := CTR
+
+If  !FileExist("D:\Comics\_Read_\Webcomics\" PAG)
+	FileCreateDir, % "D:\Comics\_Read_\Webcomics\" PAG
 
 Loop
 {

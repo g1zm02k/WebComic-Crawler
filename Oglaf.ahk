@@ -1,10 +1,11 @@
 #NoEnv
 #SingleInstance Force
 SetWorkingDir %A_ScriptDir%
-Menu, Tray, Icon, D:\Pictures\Wallpaper\Oglaf.ico
+Menu, Tray, Icon, %A_ScriptDir%\Icons\Oglaf.ico
+;https://www.oglaf.com/cumsprite/
 PAG := "Oglaf"
-URL := "https://www.oglaf.com/activitycorner/"
-CTR := 758
+URL := "https://www.oglaf.com/ghosttips/"
+CTR := 768
 RE1 := "href=""([^""]*?)"" rel=""next"
 RE2 := "<img id=""strip"" src=""(.*?)"""
 OLD := CTR
@@ -13,6 +14,9 @@ global TXT := "Running...`n`n"
 Gui, Font, s9, ProFontWindows
 Gui, Add, Edit, x0 y0 w300 h200 vEDT ReadOnly Center VScroll, %TXT%
 Gui, Show, w300 h200, Oglaf GUI
+
+If  !FileExist("D:\Comics\_Read_\Webcomics\" PAG)
+	FileCreateDir, % "D:\Comics\_Read_\Webcomics\" PAG
 
 Loop
 {

@@ -1,16 +1,19 @@
 OLD := CTR
 global TXT := "Running...`n`n"
-Menu, Tray, Icon, D:\Pictures\Wallpaper\Tapas.ico
+Menu, Tray, Icon, %A_ScriptDir%\Icons\Tapas.ico
 Gui, Font, s9, ProFontWindows
 Gui, Add, Edit, x0 y0 w300 h200 vEDT ReadOnly Center VScroll, %TXT%
 Gui, Show, w300 h200, %PAG% GUI
 
+If  !FileExist("D:\Comics\_Read_\Webcomics\" PAG)
+	FileCreateDir, % "D:\Comics\_Read_\Webcomics\" PAG
+
 Loop
 {
 	HTM := GrabPage(URL)
-	RegExMatch(HTM, "(?-m)data-id=""(.*?)"">Next", RE1)
-	RegExMatch(HTM, "(?-m)data-src=""(.*?)""", RE2)
-	if StrLen(RE11) = 0
+	RegExMatch(HTM, "data-next-id=""(.*?)"">", RE1)
+	RegExMatch(HTM, "data-src=""(.*?)""", RE2)
+	if StrLen(RE11) = 2
 	{
 		if OLD = %CTR%
 		{
@@ -42,7 +45,7 @@ GrabImg(HTM, PAG, CTR, RE2) {
 	TextAdd("Page " CTR " downloading:")
 	Loop
 	{
-		PGP := RegExMatch(HTM, "(?-m)data-src=""(.*?)""", RE2, PGP)
+		PGP := RegExMatch(HTM, "data-src=""(.*?)""", RE2, PGP)
 		if PGP > 0
 		{
 			SAV := % "D:\Comics\_Read_\Webcomics\" PAG "\" PAG " " SubStr("000" CTR, -3) "_" SubStr("0" PGN, -1) ".jpg"

@@ -1,19 +1,19 @@
 #NoEnv
 #SingleInstance Force
 SetWorkingDir %A_ScriptDir%
-Menu, Tray, Icon, %A_ScriptDir%\Icons\SA.ico
-;https://www.collectedcurios.com/sequentialart.php?s=1
-PAG := "Sequential Art"
-URL := "https://www.collectedcurios.com/sequentialart.php?s=1161"
-CTR := 1161
-RE1 := "dOne"" href=""(.*?)""><img src=""Nav_ForwardOne"
-RE2 := "image"" src=""([^""]*?)"" "
+Menu, Tray, Icon, %A_ScriptDir%\Icons\TH.ico
+;https://www.tryinghuman.com/comic/prologue--01
+PAG := "Trying Human"
+URL := "https://www.tryinghuman.com/comic/chapter-23-947"
+CTR := 970
+RE1 := "rel=""next"" href=""([^""]*?)"">"
+RE2 := "<img title=""([^""]*?)"" src=""([^""]*?)"" "
 OLD := CTR
 global TXT := "Running...`n`n"
 
 Gui, Font, s9, ProFontWindows
 Gui, Add, Edit, x0 y0 w300 h200 vEDT ReadOnly Center VScroll, %TXT%
-Gui, Show, w300 h200, Seq-Art GUI
+Gui, Show, w300 h200, Trying Human GUI
 
 If  !FileExist("D:\Comics\_Read_\Webcomics\" PAG)
 	FileCreateDir, % "D:\Comics\_Read_\Webcomics\" PAG
@@ -23,7 +23,7 @@ Loop
 	HTM := GrabPage(URL)
 	RegExMatch(HTM, RE1, NXT)
 	RegExMatch(HTM, RE2, IMG)
-	SAV := % "D:\Comics\_Read_\Webcomics\" PAG "\" SubStr(IMG1, InStr(IMG1, "/",, -1)+1)
+	SAV := % "D:\Comics\_Read_\Webcomics\" PAG "\" SubStr("000" CTR, -3) " " IMG1 ".jpg"
 	if StrLen(NXT1) = 0
 	{
 		if OLD = %CTR%
@@ -31,23 +31,17 @@ Loop
 			TextAdd("Already up to date.")
 			break
 		} else {
-			URLDownloadToFile, % "https://www.collectedcurios.com/" IMG1, %SAV%
-			If  !FileExist(SAV)
-				TextAdd("Failed: " SubStr(SAV, InStr(SAV, "\",, -1)+1))
-			else
-				TextAdd("Downloaded: " SubStr(SAV, InStr(SAV, "\",, -1)+1))
+			URLDownloadToFile, %IMG2%, %SAV%
+			TextAdd("Downloaded: " SubStr(SAV, InStr(SAV, "\",, -1)+1))
 			TextAdd("`nDownloaded up to " CTR ".")
 			WriteSelf(PAG, URL, CTR)
 			break
 		}
 	} else {
-		URL := % "https://www.collectedcurios.com" NXT1
+		URL := % NXT1
 		CTR++
-		URLDownloadToFile, % "https://www.collectedcurios.com/" IMG1, %SAV%
-		If  !FileExist(SAV)
-			TextAdd("Failed: " SubStr(SAV, InStr(SAV, "\",, -1)+1))
-		else
-			TextAdd("Downloaded: " SubStr(SAV, InStr(SAV, "\",, -1)+1))
+		URLDownloadToFile, %IMG2%, %SAV%
+		TextAdd("Downloaded: " SubStr(SAV, InStr(SAV, "\",, -1)+1))
 	}
 }
 
