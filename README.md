@@ -6,9 +6,13 @@ I started with Sequential Art and it does what I want so I left it as is with no
 Broodhollow was next, shortly followed by Oglaf, then the Tapas collection (which are basically all the same base script and rely on the Tapas.ahk for the legwork).
 
 Independant Scripts
-- Broodhollow
-- Oglaf
-- Sequential Art (No UI)
+- Bear Nuts
+- Broodhollow (site no longer updated?)
+- Goblins
+- Oglaf (now with error checking and improved UI)
+- Sequential Art (no UI yet)
+- Spinnerette
+- Trying Human
 
 Require Tapas.ahk to run
 - Brutally Honest
@@ -17,6 +21,8 @@ Require Tapas.ahk to run
 - Sarah's Scribbles
 - Shen Comix
 - The Pigeon Gazette
+
+Improved Oglaf script immensely, now to add those improvements to Tapas and the others...
 
 The next step is finding a way to have one main loop and have each comic's script as a plugin of sorts.
 
