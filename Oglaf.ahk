@@ -4,8 +4,8 @@ SetWorkingDir %A_ScriptDir%
 Menu, Tray, Icon, %A_ScriptDir%\Icons\Oglaf.ico
 ;https://www.oglaf.com/cumsprite/
 PAG := "Oglaf"
-URL := "https://www.oglaf.com/ghosttips/"
-CTR := 768
+URL := "https://www.oglaf.com/haruspex/"
+CTR := 772
 RE1 := "href=""([^""]*?)"" rel=""next"
 RE2 := "<img id=""strip"" src=""(.*?)"""
 OLD := CTR
@@ -17,7 +17,6 @@ Gui, Show, w300 h200, Oglaf GUI
 
 If  !FileExist("D:\Comics\_Read_\Webcomics\" PAG)
 	FileCreateDir, % "D:\Comics\_Read_\Webcomics\" PAG
-
 Loop
 {
 	HTM := GrabPage(URL)
@@ -59,7 +58,7 @@ TextAdd(TEX) {
 }
 
 GrabPage(URL) {
-	TMP := A_Temp "/" A_Now ".txt"
+	TMP := A_Temp "\Oglaf.txt"
 	URLDownloadToFile % URL, % TMP
 	FileRead HTM, % TMP
 	HTM := RegExReplace(HTM,"`n", "`r`n")
