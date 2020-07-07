@@ -5,7 +5,7 @@ I started with Sequential Art and it does what I want so I left it as is with no
 
 Broodhollow was next, shortly followed by Oglaf, then the Tapas collection (which are basically all the same base script and rely on the Tapas.ahk for the legwork).
 
-Independant Scripts
+Independant Scripts:
 - Bear Nuts
 - Broodhollow (site no longer updated?)
 - Goblins
@@ -15,7 +15,7 @@ Independant Scripts
 - Trying Human
 All the above now have near-identical code (barring Broodhollow for obvious reasons).
 
-Require Tapas.ahk to run
+The following are headers and need Tapas.ahk to run:
 - Brutally Honest
 - Cassandra Comics
 - Mondo Mango
