@@ -9,10 +9,11 @@ Independant Scripts
 - Bear Nuts
 - Broodhollow (site no longer updated?)
 - Goblins
-- Oglaf (now with error checking and improved UI)
-- Sequential Art (no UI yet)
+- Oglaf
+- Sequential Art
 - Spinnerette
 - Trying Human
+All the above now have near-identical code (barring Broodhollow for obvious reasons).
 
 Require Tapas.ahk to run
 - Brutally Honest
@@ -21,9 +22,6 @@ Require Tapas.ahk to run
 - Sarah's Scribbles
 - Shen Comix
 - The Pigeon Gazette
-
-Improved Oglaf script immensely, now to add those improvements to Tapas and the others...
-
 The next step is finding a way to have one main loop and have each comic's script as a plugin of sorts.
 
 Anyway, they all work to some degree, and they're all self-updating and contain the index link if you want to start them from the beginning - otherwise they'll just continue from where they last left off and overwrite themselves with any updated information.
