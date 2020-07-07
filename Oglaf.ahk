@@ -6,53 +6,65 @@ Menu, Tray, Icon, %A_ScriptDir%\Icons\Oglaf.ico
 PAG := "Oglaf"
 URL := "https://www.oglaf.com/haruspex/"
 CTR := 772
+URI := "https://www.oglaf.com"
 RE1 := "href=""([^""]*?)"" rel=""next"
 RE2 := "<img id=""strip"" src=""(.*?)"""
 OLD := CTR
+UPD := True
+LOC := "D:\Comics\_Read_\Webcomics\"
 global TXT := "Running...`n`n"
 
+Gui, Oglaf:New, +ToolWindow +Owner
 Gui, Font, s9, ProFontWindows
-Gui, Add, Edit, x0 y0 w300 h200 vEDT ReadOnly Center VScroll, %TXT%
-Gui, Show, w300 h200, Oglaf GUI
+Gui, Add, Edit, x0 y0 w600 h200 vEDT ReadOnly Center VScroll, %TXT%
+Gui, Show, w600 h200, Oglaf
 
-If  !FileExist("D:\Comics\_Read_\Webcomics\" PAG)
-	FileCreateDir, % "D:\Comics\_Read_\Webcomics\" PAG
+If !FileExist(LOC PAG)
+	FileCreateDir, % LOC PAG
 Loop
 {
 	HTM := GrabPage(URL)
 	RegExMatch(HTM, RE1, NXT)
 	RegExMatch(HTM, RE2, IMG)
-	SAV := % "D:\Comics\_Read_\Webcomics\" PAG "\" SubStr("000" CTR, -3) " " SubStr(IMG1, InStr(IMG1, "/",, -1)+1)
-	if StrLen(NXT1) = 0
+	if ((NXT1="") and (CTR=OLD))
 	{
-		if OLD = %CTR%
-		{
-			TextAdd("Already up to date.")
-			break
-		} else {
-			URLDownloadToFile, %IMG1%, %SAV%
-			TextAdd("Downloaded: " SubStr(SAV, InStr(SAV, "\",, -1)+1))
-			TextAdd("`nDownloaded up to " CTR ".")
-			WriteSelf(PAG, URL, CTR)
-			break
-		}
+		TextAdd("Up to date.")
+		UPD:=False
+		break
+	}
+	SAV := % LOC PAG "\" SubStr("000" CTR, -3) " " SubStr(IMG1, InStr(IMG1, "/",, -1)+1)
+	TextAdd("Downloading from: " URL)
+	URLDownloadToFile, %IMG1%, %SAV%
+	if FileExist(SAV)
+		TextAdd("Downloaded: " SubStr(SAV, InStr(SAV, "/",, -1)+1) "`n")
+	else
+	{
+		TextAdd("`nDownload failure! Quitting...")
+		UPD:=False
+		break
+	}
+	if (NXT1="")
+	{
+		TextAdd("Downloaded from " OLD " to " CTR ".")
+		break
 	} else {
-		URL := % "https://www.oglaf.com" . NXT1
+		if RegExMatch(NXT1,"https://")
+			URL := % NXT1
+		else
+			URL := % URI NXT1
 		CTR++
-		URLDownloadToFile, %IMG1%, %SAV%
-		TextAdd("Downloaded: " SubStr(SAV, InStr(SAV, "\",, -1)+1))
 	}
 }
-
-WriteSelf(PAG, URL, CTR)
-return
-
-GuiClose:
+TextAdd("`nPress <Space> to exit...")
+KeyWait, Space, D
+if UPD
+	WriteSelf(PAG, URL, CTR)
+OglafGuiClose:
 ExitApp
 
 TextAdd(TEX) {
 	TXT := % TXT TEX "`n"
-	GuiControl, ,EDT ,%TXT%
+	GuiControl,Oglaf:,EDT ,%TXT%
 	ControlSend Edit1, ^{End}, A
 	return TXT
 }
