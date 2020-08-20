@@ -1,6 +1,6 @@
 #NoEnv
 #SingleInstance Force
-URL := "https://www.collectedcurios.com/sequentialart.php?s=1156"
-;"https://audioboom.com/posts/4960884-no-such-thing-as-a-pilot-fish"
-TMP := "D:\downloads\html.txt"
+URL:="https://usd.currencyrate.today/cad/100"
+;URL:="https://audioboom.com/posts/7617059-no-such-thing-as-a-scuba-diver-in-a-tree"
+TMP:="D:\downloads\htm.txt"
 URLDownloadToFile % URL, % TMP

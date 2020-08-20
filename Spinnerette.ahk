@@ -4,8 +4,8 @@ SetWorkingDir %A_ScriptDir%
 Menu, Tray, Icon, %A_ScriptDir%\Icons\Spinny.ico
 ;https://www.spinnyverse.com/comic/02-09-2010
 PAG := "Spinnerette"
-URL := "https://www.spinnyverse.com/comic/hostess-x-spinny-2"
-CTR := 1100
+URL := "https://www.spinnyverse.com/comic/book-7"
+CTR := 1103
 URI := "https://www.spinnyverse.com/comic"
 RE1 := "next"" href=""([^""]*?)""><"
 RE2 := "src=""([^""]*?)"" id"

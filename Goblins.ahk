@@ -4,8 +4,8 @@ SetWorkingDir %A_ScriptDir%
 Menu, Tray, Icon, %A_ScriptDir%\Icons\Gobbos.ico
 ;https://www.goblinscomic.com/comic/06252005/
 PAG := "Goblins"
-URL := "https://www.goblinscomic.com/comic/page-9-2020"
-CTR := 925
+URL := "https://www.goblinscomic.com/comic/page-10-2020"
+CTR := 926
 URI := "https://www.goblinscomic.com/comic"
 RE1 := "next"" href=""([^""]*?)""></a><a class="
 RE2 := "src=""([^""]*?)"" id="

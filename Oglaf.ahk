@@ -4,8 +4,8 @@ SetWorkingDir %A_ScriptDir%
 Menu, Tray, Icon, %A_ScriptDir%\Icons\Oglaf.ico
 ;https://www.oglaf.com/cumsprite/
 PAG := "Oglaf"
-URL := "https://www.oglaf.com/haruspex/"
-CTR := 772
+URL := "https://www.oglaf.com/hotgates/"
+CTR := 774
 URI := "https://www.oglaf.com"
 RE1 := "href=""([^""]*?)"" rel=""next"
 RE2 := "<img id=""strip"" src=""(.*?)"""

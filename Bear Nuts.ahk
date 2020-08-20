@@ -4,8 +4,8 @@ SetWorkingDir %A_ScriptDir%
 Menu, Tray, Icon, %A_ScriptDir%\Icons\BN.ico
 ;https://bearnutscomic.com/2008/08/17/01-bear-nuts/
 PAG := "Bear Nuts"
-URL := "https://bearnutscomic.com/2020/07/06/741-bear-nuts/"
-CTR := 754
+URL := "https://bearnutscomic.com/2020/07/13/742-bear-nuts/"
+CTR := 755
 URI := "https://bearnutscomic.com"
 RE1 := "href=""([^""]*?)"" rel=""next"">Next"
 RE2 := "comic""> <img src=""([^""]*?)"" alt"

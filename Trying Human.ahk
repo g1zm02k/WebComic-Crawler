@@ -4,8 +4,8 @@ SetWorkingDir %A_ScriptDir%
 Menu, Tray, Icon, %A_ScriptDir%\Icons\TH.ico
 ;https://www.tryinghuman.com/comic/prologue--01
 PAG := "Trying Human"
-URL := "https://www.tryinghuman.com/comic/chapter-23-955"
-CTR := 978
+URL := "https://www.tryinghuman.com/comic/chapter-23-957"
+CTR := 980
 URI := "https://www.tryinghuman.com/comic"
 RE1 := "rel=""next"" href=""([^""]*?)"">"
 RE2 := "<img title=""([^""]*?)"" src=""([^""]*?)"" "
@@ -32,9 +32,10 @@ Loop
 		UPD:=False
 		break
 	}
-	SAV := % LOC PAG "\" SubStr("000" CTR, -3) " " SubStr(IMG1, InStr(IMG1, "/",, -1)+1)
+	SAV := % LOC PAG "\" SubStr("000" CTR, -3) " " SubStr(IMG1, InStr(IMG1, "/",, -1)+1) ".jpg"
 	TextAdd("Downloading from: " URL)
-	URLDownloadToFile, %IMG1%, %SAV%
+	Msb(IMG1 "`n" IMG2,5)
+	URLDownloadToFile, %IMG2%, %SAV%
 	if FileExist(SAV)
 		TextAdd("Downloaded: " SubStr(SAV, InStr(SAV, "/",, -1)+1) "`n")
 	else
