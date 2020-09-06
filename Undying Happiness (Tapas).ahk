@@ -5,5 +5,5 @@ SetWorkingDir %A_ScriptDir%
 ;https://tapas.io/episode/88152
 PAG:="Undying Happiness"
 URL:="https://tapas.io/episode/88152"
-CTR:=1
+CUR:=1
 #Include Tapas.inc
