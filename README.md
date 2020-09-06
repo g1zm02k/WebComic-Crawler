@@ -1,9 +1,5 @@
 # WebComic-Crawler
-A small collection of scripts for downloading select webcomics in their entirety.
-
-I started with Sequential Art and it does what I want so I left it as is with no UI until I get back to it.
-
-Broodhollow was next, shortly followed by Oglaf, then the Tapas collection (which are basically all the same base script and rely on the Tapas.ahk for the legwork).
+A small collection of scripts for downloading select webcomics in their entirety and update themselves with their current position ready for any new comic updates.
 
 Independant Scripts:
 - Bear Nuts
@@ -14,16 +10,12 @@ Independant Scripts:
 - Spinnerette
 - Trying Human
 
-All the above now have near-identical code (barring Broodhollow for obvious reasons).
+The following are headers and need Tapas.inc to run:
+- Brutally Honest (Deya Muniz)
+- Cassandra Comics (Cassandra Calin)
+- Fangs (Sarah Andersen)
+- Sarah's Scribbles (Sarah Andersen)
+- The Pigeon Gazette (Pigeoneer Jane)
+- Undying Happiness (Zelkats)
 
-The following are headers and need Tapas.ahk to run:
-- Brutally Honest
-- Cassandra Comics
-- Mondo Mango
-- Sarah's Scribbles
-- Shen Comix
-- The Pigeon Gazette
-
-The next step is finding a way to have one main loop and have each comic's script as a plugin of sorts.
-
-Anyway, they all work to some degree, and they're all self-updating and contain the index link if you want to start them from the beginning - otherwise they'll just continue from where they last left off and overwrite themselves with any updated information.
+I'm (on and off) working on trying to get all the independant scripts to work similar to the Tapas bunch and just use one main include script but it's a bit of a slog due to the variety of ways sites implement their code...
