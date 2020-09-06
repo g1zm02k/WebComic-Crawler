@@ -79,6 +79,5 @@ WriteSelf(PAG,URL,CUR) {
   FileRead TMP,% PAG " (Tapas).bak"
   TMP:=% RegExReplace(TMP,"`am)^URL:=.*", "URL:=""" URL """")
   TMP:=% RegExReplace(TMP,"`am)^CUR:=.*", "CUR:=" CUR)
-  SAV:=PAG " (Tapas).ahk"
-  FileAppend %TMP%, %SAV%
+  FileAppend % TMP, % PAG " (Tapas).ahk"
 }
