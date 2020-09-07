@@ -34,7 +34,7 @@ No longer needed here since you can generate your own from Tapas.ahk. Once you h
 New comic headers can be created on-the-fly by running the main script on its own and entering any comic's episode number into the box.
 The episode number can be found by visiting tapas.io, selecting a (non-premium) comic, clicking on the first page and grabbing the right-most digits in the URL.
  
-https://tapas.io/episodes/20288 <- These digits here only (e.g. 'Sarah's Scribbles').
+https://tapas.io/episode/20288 <- These digits here only (e.g. 'Sarah's Scribbles').
 
 Just enter the digits into the text box and confirm the details (comic name, start number, and strip title) and the script will generate a header for that comic ready to use for download. Just run that header on its own and it'll start downloading immediately.
 
