@@ -4,6 +4,7 @@ SetWorkingDir %A_ScriptDir%
 ;The Pigeon Gazette by Pigeoneer Jane
 ;https://tapas.io/episode/85390
 PAG:="The Pigeon Gazette"
-URL:="https://tapas.io/episode/85390"
-CTR:=1
-#Include Tapas.inc
+PRE:="TPG"
+URL:="https://tapas.io/episode/1833089"
+CUR:=271
+#Include Tapas.ahk

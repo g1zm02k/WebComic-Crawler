@@ -4,6 +4,7 @@ SetWorkingDir %A_ScriptDir%
 ;Undying Happiness by Zelkats
 ;https://tapas.io/episode/88152
 PAG:="Undying Happiness"
-URL:="https://tapas.io/episode/88152"
-CUR:=1
-#Include Tapas.inc
+PRE:="UH"
+URL:="https://tapas.io/episode/376007"
+CUR:=47
+#Include Tapas.ahk
