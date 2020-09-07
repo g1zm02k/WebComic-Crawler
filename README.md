@@ -11,12 +11,12 @@ A small collection of scripts for downloading select webcomics in their entirety
 - Trying Human
 
 ~~The following are headers and need Tapas.inc to run:
-- Brutally Honest (Deya Muniz)
-~~- Cassandra Comics (Cassandra Calin)
-- Fangs (Sarah Andersen)
-~~- Sarah's Scribbles (Sarah Andersen)
-- The Pigeon Gazette (Pigeoneer Jane)
-~~- Undying Happiness (Zelkats)~~
+ Brutally Honest (Deya Muniz)
+ Cassandra Comics (Cassandra Calin)
+ Fangs (Sarah Andersen)
+ Sarah's Scribbles (Sarah Andersen)
+ The Pigeon Gazette (Pigeoneer Jane)
+ Undying Happiness (Zelkats)~~
 
 # Massive changes!
 
