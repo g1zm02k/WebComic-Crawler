@@ -39,11 +39,11 @@ https://tapas.io/episodes/20288 <- These digits here only (e.g. 'Sarah's Scribbl
 Just enter the digits into the text box and confirm the details (comic name, start number, and strip title) and the script will generate a header for that comic ready to use for download. Just run that header on its own and it'll start downloading immediately.
 
 Example episode numbers for generating headers equal to the ones in this git:
-  20288 - Sarah's Scribbles
-  85390 - The Pigeon Gazette
-  88152 - Undying Happiness
- 116577 - Brutally Honest
- 255222 - Erma
- 362370 - Cassandra Comics
-1353906 - The Red Muscle
-1559785 - Fangs
+-   20288 - Sarah's Scribbles
+-   85390 - The Pigeon Gazette
+-   88152 - Undying Happiness
+-  116577 - Brutally Honest
+-  255222 - Erma
+-  362370 - Cassandra Comics
+- 1353906 - The Red Muscle
+- 1559785 - Fangs
