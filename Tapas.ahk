@@ -1,7 +1,7 @@
 if (A_ScriptName="Tapas.ahk") {
 	FLG:=0
 	Loop {
-		InputBox URL, Tapas Generator,Only enter the digits from the right part of the URL...
+		InputBox URL, Tapas Generator,Only enter the digits from the right part of the URL...`ne.g. If the URL is https://tapas.io/episode/255222 then`nyou only have to enter 255222`, try it!
 		if ErrorLevel {
 			ExitApp
 		} else {
@@ -95,7 +95,7 @@ Loop {
     }
   }
   if (NX1="-1") {
-    TextAdd("`nDownloaded from " OLD " to " CUR ".")
+    TextAdd("`nDownloaded from " OLD+1 " to " CUR ".")
     break
   } else {
     URL:=% "https://tapas.io/episode/" NX1
@@ -133,7 +133,7 @@ StripCode(STR){
   STR:=RegExReplace(STR," $","")
   return STR
 }
-    
+
 WriteSelf(PAG,URL,CUR) {
   FileMove % PAG " (Tapas).ahk",% PAG " (Tapas).bak",1
   FileRead TMP,% PAG " (Tapas).bak"
