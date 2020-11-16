@@ -29,6 +29,7 @@ No longer needed here since you can generate your own from Tapas.ahk. Once you h
 - Download fails now show all current variables for fault diagnosis.
 - Script updates site data after each download instead of in bulk.
 - Can now generate headers when given a valid Tapas comic episode number.
+Note: Repeatedly copies the headers to a backup after EVERY download in case if fluffs up (deletes it when succesful) - need to change this to a log file instead at some point to avoid disk wear!
 
 ## Generate Headers:
 New comic headers can be created on-the-fly by running the main script on its own and entering any comic's episode number into the box.
