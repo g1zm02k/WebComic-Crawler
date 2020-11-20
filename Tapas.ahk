@@ -13,11 +13,15 @@ if (A_ScriptName="Tapas.ahk") {
 				RegExMatch(HTM,"s-btn"">([^<]+)</a",PA)
 				RegExMatch(HTM,"ber=""([0-9]+)""",CU)
 				RegExMatch(HTM,"ep-title"">([^<]+)<",TT)
-				MsgBox 3,,% "Strip: " PA1 "`nCount: " CU1 "`nTitle: " TT1 "`n`nIs this correct?"
-				IfMsgBox Cancel
-					ExitApp
-				IfMsgBox Yes
-					FLG:=1
+        if (PA1="")
+          MsgBox %URL% doesn't exist, try again...
+        else{
+          MsgBox 3,,% "Strip: " PA1 "`nCount: " CU1 "`nTitle: " TT1 "`n`nIs this correct?"
+          IfMsgBox Cancel
+            ExitApp
+          IfMsgBox Yes
+            FLG:=1
+        }
 			}
 		}
 	} Until FLG
@@ -46,8 +50,8 @@ PAU:="<h1>Coming Soon!<"
 OLD:=CUR
 LOC:="D:\Comics\_Read_\Webcomics\"
 global TXT:="Running...`n"
-if FileExist(A_ScriptDir "\Icons\Tapas.ico")
-  Menu Tray,Icon,% A_ScriptDir "\Icons\Tapas.ico"
+if FileExist(A_ScriptDir "\Icons  apas.ico")
+  Menu Tray,Icon,% A_ScriptDir "\Icons  apas.ico"
 Gui Tapas:New,,Tapas
 Gui Font,s9,ProFontWindows
 Gui Add,Edit,x0 y0 w800 h400 vEDT ReadOnly VScroll,% TXT
