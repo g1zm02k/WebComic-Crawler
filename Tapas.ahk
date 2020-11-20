@@ -1,18 +1,18 @@
 if (A_ScriptName="Tapas.ahk") {
-	FLG:=0
-	Loop {
-		InputBox URL, Tapas Generator,Only enter the digits from the right part of the URL...`ne.g. If the URL is https://tapas.io/episode/255222 then`nyou only have to enter 255222`, try it!
-		if ErrorLevel {
-			ExitApp
-		} else {
-			if !RegExMatch(URL,"^[0-9]+$") {
-				MsgBox Please enter digits only.
-			} else {
-				URL:="https://tapas.io/episode/" URL
-				HTM:=GrabPage(URL)
-				RegExMatch(HTM,"s-btn"">([^<]+)</a",PA)
-				RegExMatch(HTM,"ber=""([0-9]+)""",CU)
-				RegExMatch(HTM,"ep-title"">([^<]+)<",TT)
+  FLG:=0
+  Loop {
+    InputBox URL, Tapas Generator,Only enter the digits from the right part of the URL...`ne.g. If the URL is https://tapas.io/episode/255222 then`nyou only have to enter 255222`, try it!
+    if ErrorLevel {
+      ExitApp
+    } else {
+      if !RegExMatch(URL,"^[0-9]+$") {
+        MsgBox Please enter digits only.
+      } else {
+        URL:="https://tapas.io/episode/" URL
+        HTM:=GrabPage(URL)
+        RegExMatch(HTM,"s-btn"">([^<]+)</a",PA)
+        RegExMatch(HTM,"ber=""([0-9]+)""",CU)
+        RegExMatch(HTM,"ep-title"">([^<]+)<",TT)
         if (PA1="")
           MsgBox %URL% doesn't exist, try again...
         else{
@@ -22,26 +22,26 @@ if (A_ScriptName="Tapas.ahk") {
           IfMsgBox Yes
             FLG:=1
         }
-			}
-		}
-	} Until FLG
+      }
+    }
+  } Until FLG
   PA1:=StripCode(PA1)
   PRE:=0
   Loop, Parse, PA1, " "
     PRE.=SubStr(A_LoopField,1,1)
-	FileAppend,
-	(
-	#NoEnv
-	#SingleInstance Force
-	SetWorkingDir `%A_ScriptDir`%
-	;%URL%
-	PAG:=%PA1%
-	PRE:=%PA1%
-	URL:=%URL%
-	CUR:=%CU1%
-	#Include Tapas.ahk
-	), % PA1 " (Tapas).ahk"
-	ExitApp
+  FileAppend,
+  (
+  #NoEnv
+  #SingleInstance Force
+  SetWorkingDir `%A_ScriptDir`%
+  ;%URL%
+  PAG:=%PA1%
+  PRE:=%PA1%
+  URL:=%URL%
+  CUR:=%CU1%
+  #Include Tapas.ahk
+  ), % PA1 " (Tapas).ahk"
+  ExitApp
 }
 NXT:="data-next-id=""(.*?)"">"
 IMG:="data-src=""(.*?)"""
