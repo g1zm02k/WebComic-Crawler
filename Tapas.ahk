@@ -1,21 +1,21 @@
-if (A_ScriptName="Tapas.ahk") {
+If (A_ScriptName="Tapas.ahk"){
   FLG:=0
-  Loop {
+  Loop{
     InputBox URL, Tapas Generator,Only enter the digits from the right part of the URL...`ne.g. If the URL is https://tapas.io/episode/255222 then`nyou only have to enter 255222`, try it!
-    if ErrorLevel {
+    If ErrorLevel{
       ExitApp
-    } else {
-      if !RegExMatch(URL,"^[0-9]+$") {
+    }Else{
+      If !RegExMatch(URL,"^[0-9]+$"){
         MsgBox Please enter digits only.
-      } else {
+      }Else{
         URL:="https://tapas.io/episode/" URL
         HTM:=GrabPage(URL)
         RegExMatch(HTM,"s-btn"">([^<]+)</a",PA)
         RegExMatch(HTM,"ber=""([0-9]+)""",CU)
         RegExMatch(HTM,"ep-title"">([^<]+)<",TT)
-        if (PA1="")
+        If (PA1="")
           MsgBox %URL% doesn't exist, try again...
-        else{
+        Else{
           MsgBox 3,,% "Strip: " PA1 "`nCount: " CU1 "`nTitle: " TT1 "`n`nIs this correct?"
           IfMsgBox Cancel
             ExitApp
@@ -30,17 +30,17 @@ if (A_ScriptName="Tapas.ahk") {
   Loop, Parse, PA1, " "
     PRE.=SubStr(A_LoopField,1,1)
   FileAppend,
-  (
-  #NoEnv
-  #SingleInstance Force
-  SetWorkingDir `%A_ScriptDir`%
-  ;%URL%
-  PAG:=%PA1%
-  PRE:=%PA1%
-  URL:=%URL%
-  CUR:=%CU1%
-  #Include Tapas.ahk
-  ), % PA1 " (Tapas).ahk"
+(
+#NoEnv
+#SingleInstance Force
+SetWorkingDir `%A_ScriptDir`%
+;%URL%
+PAG:="%PA1%"
+PRE:="%PA1%"
+URL:="%URL%"
+CUR:=%CU1%
+#Include Tapas.ahk
+), % PA1 " (Tapas).ahk"
   ExitApp
 }
 NXT:="data-next-id=""(.*?)"">"
@@ -49,13 +49,13 @@ TTL:="ep-title"">([^<]+)<"
 PAU:="<h1>Coming Soon!<"
 OLD:=CUR
 LOC:="D:\Comics\_Read_\Webcomics\"
-global TXT:="Running...`n"
-if FileExist(A_ScriptDir "\Icons  apas.ico")
-  Menu Tray,Icon,% A_ScriptDir "\Icons  apas.ico"
+Global TXT:="Running...`n",PAG
+If FileExist(A_ScriptDir "\Icons\Tapas.ico")
+  Menu Tray,Icon,% A_ScriptDir "\Icons\Tapas.ico"
 Gui Tapas:New,,Tapas
-Gui Font,s9,ProFontWindows
-Gui Add,Edit,x0 y0 w800 h400 vEDT ReadOnly VScroll,% TXT
-Gui Show,w800 h400,Tapas
+Gui Font,s9,Consolas
+Gui Add,Edit,x0 y0 w800 h188 vEDT Center ReadOnly VScroll,% TXT
+Gui Show,w800 h188,Tapas
 
 If !FileExist(LOC PAG)
   FileCreateDir,% LOC PAG
@@ -63,69 +63,72 @@ Loop {
   HTM:=GrabPage(URL)
   RegExMatch(HTM,NXT,NX)
   RegExMatch(HTM,IMG,IM)
-  if (((NX1="") or (NX1="-1")) and (CUR=OLD)) {
+  If (((NX1="") or (NX1="-1")) and (CUR=OLD)){
     TextAdd("`nUp to date.")
-    break
-  } else if RegExMatch(HTM,PAU) {
+    Break
+  }Else If RegExMatch(HTM,PAU){
     TextAdd("`n" TT1 " Coming Soon!`n`nQuitting...")
-    break
-  } else if (IM1="") {
+    Break
+  }Else If (IM1=""){
     TextAdd("`nImage RegEx failure!`n`nQuitting...")
-    break
+    Break
   }
-  if ((CUR>OLD) or (CUR=1)) {
+  If ((CUR>OLD) or (CUR=1)){
     RegExMatch(HTM,TTL,TT)
-    if RegExMatch(TT1,"\\|/|:|\*|\?|""|<|>|\||&#039;|&#034;|&amp;|&rsquo;| $")
+    If RegExMatch(TT1,"\\|/|:|\*|\?|""|<|>|\||&#039;|&#034;|&amp;|â€™|&rsquo;| $")
       TT1:=StripCode(TT1)
     PGP:=1,PGN:=1
     TextAdd("`nDownloading from: " URL)
-    Loop {
+    Loop{
       PGP:=RegExMatch(HTM,IMG,IM,PGP)
-      if (PGP>0) {
+      If (PGP>0){
         SAV:=% LOC PAG "\" PRE SubStr("000" CUR, -3) Chr(PGN+96) " " TT1 ".jpg"
         URLDownloadToFile % IM1,% SAV
-        if FileExist(SAV) {
+        If FileExist(SAV)
           TextAdd("Downloaded: " SubStr(SAV, InStr(SAV, "/",, -1)+1))
-          WriteSelf(PAG,URL,CUR)
-        } else {
+        Else{
           TextAdd("`nDownload failure!`n`n  URL:" URL "`n  IM1:" IM1 "`n  NX1:" NX1 "`n  SAV:" SAV "`n`nQuitting...")
-          break
+          Break
         }
         PGN++
         PGP++
-      } else {
-        break
-      }
+      }Else
+        Break
     }
   }
-  if (NX1="-1") {
+  If (NX1="-1"){
     TextAdd("`nDownloaded from " OLD+1 " to " CUR ".")
-    break
-  } else {
+    Break
+  }Else{
     URL:=% "https://tapas.io/episode/" NX1
     CUR++
   }
 }
+WriteSelf(PAG,URL,CUR)
 TextAdd("`nPress <Space> to exit...")
 KeyWait Space, D
 TapasGuiClose:
 FileDelete % PAG " (Tapas).bak"
 ExitApp
 
-TextAdd(TEX) {
+TextAdd(TEX){
   TXT:=% TXT TEX "`n"
+  TMP:=InStr(TXT,"`n",,0,13)
+  If TMP
+    TXT:=SubStr(TXT,TMP+1)
   GuiControl,Tapas:,EDT,% TXT
-  ControlSend Edit1,^{End},Tapas
-  return TXT
+  If !FileExist(A_ScriptDir "\Logs")
+    FileCreateDir,% A_ScriptDir "\Logs"
+  FileAppend % TEX "`n",% A_ScriptDir "\Logs\" PAG ".txt"
 }
 
-GrabPage(URL) {
+GrabPage(URL){
   TMP:=A_Temp "/" A_Now ".txt"
   URLDownloadToFile % URL,% TMP
   FileRead HTM,% TMP
   HTM:=RegExReplace(HTM,"`n","`r`n")
   FileDelete % TMP
-  return HTM
+  Return HTM
 }
 
 StripCode(STR){
@@ -133,14 +136,14 @@ StripCode(STR){
   STR:=RegExReplace(STR,":|\|","-")
   STR:=RegExReplace(STR,"\?",".")
   STR:=RegExReplace(STR,"&amp;","&")
-  STR:=RegExReplace(STR,"&#039;|&#034;|&rsquo;","'")
+  STR:=RegExReplace(STR,"&#039;|&#034;|&rsquo;|â€™","'")
   STR:=RegExReplace(STR," $","")
-  return STR
+  Return STR
 }
 
-WriteSelf(PAG,URL,CUR) {
-  FileMove % PAG " (Tapas).ahk",% PAG " (Tapas).bak",1
-  FileRead TMP,% PAG " (Tapas).bak"
+WriteSelf(PAG,URL,CUR){
+  FileRead TMP,% PAG " (Tapas).ahk"
+  FileDelete % PAG " (Tapas).ahk"
   TMP:=% RegExReplace(TMP,"`am)^URL:=.*", "URL:=""" URL """")
   TMP:=% RegExReplace(TMP,"`am)^CUR:=.*", "CUR:=" CUR)
   FileAppend % TMP, % PAG " (Tapas).ahk"
