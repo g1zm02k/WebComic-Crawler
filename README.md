@@ -1,3 +1,5 @@
+Note: While I will continue to update the scripts from time to time, this ReadMe won't follow suit. This is because sites like Tapas are constantly changing the stupidest shit (like hiding the comic IDs) to make you have to use their site for the most trivial thing - they don't want you just bookmarking individual comics/pages, or navigation directly to a given page - you must scro-o-o-o-o-o-o-oll through those 2938 individual links to find what you want because fuck you...
+
 # WebComic-Crawler
 A small collection of scripts for downloading select webcomics in their entirety and update themselves with their current position ready for any new comic updates.
 
