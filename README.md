@@ -1,26 +1,9 @@
-Note: While I will continue to update the scripts from time to time, this ReadMe won't follow suit. This is because sites like Tapas are constantly changing the stupidest shit (like hiding the comic IDs) to make you have to use their site for the most trivial thing - they don't want you just bookmarking individual comics/pages, or navigation directly to a given page - you must scro-o-o-o-o-o-o-oll through those 2938 individual links to find what you want because fuck you...
-
 # WebComic-Crawler
-A small collection of scripts for downloading select webcomics in their entirety and update themselves with their current position ready for any new comic updates.
 
-## Independant Scripts:
-- Bear Nuts
-- Broodhollow (site no longer updated?)
-- Goblins
-- Oglaf
-- Sequential Art
-- Spinnerette
-- Trying Human
+## Independant Site Scripts
+Individual scripts are no longer needed as I've finally got around to merging all my individual downloaders into a master file (WebComics.ahk) that uses headers similar to how the Tapas downloader works.
 
-~~The following are headers and need Tapas.inc to run:~~
-- ~~Brutally Honest (Deya Muniz)~~
-- ~~Cassandra Comics (Cassandra Calin)~~
-- ~~Fangs (Sarah Andersen)~~
-- ~~Sarah's Scribbles (Sarah Andersen)~~
-- ~~The Pigeon Gazette (Pigeoneer Jane)~~
-- ~~Undying Happiness (Zelkats)~~
-
-# Massive changes!
+'Blank Header.ahk' gives a brief description of how to format the headers, but I've uploaded all the current ones as well as leaving the old versions.
 
 ## Header files:
 No longer needed here since you can generate your own from Tapas.ahk. Once you have a generated header just run it and it'll run Tapas.ahk with its parameters and download the complete comic to date - updating itself with its current position as it goes.
@@ -42,11 +25,12 @@ https://tapas.io/episode/20288 <- These digits here only (e.g. 'Sarah's Scribble
 Just enter the digits into the text box and confirm the details (comic name, start number, and strip title) and the script will generate a header for that comic ready to use for download. Just run that header on its own and it'll start downloading immediately.
 
 Example episode numbers for generating headers equal to the ones in this git:
--   20288 - Sarah's Scribbles
--   85390 - The Pigeon Gazette
--   88152 - Undying Happiness
+-   20288 - Sarah's Scribbles (Hiatus)
+-   46051 - Maximumble
+-   85390 - The Pigeon Gazette (Hiatus)
+-   88152 - Undying Happiness (Hiatus)
 -  116577 - Brutally Honest
 -  255222 - Erma
 -  362370 - Cassandra Comics
-- 1353906 - The Red Muscle
-- 1559785 - Fangs
+- 1353906 - The Red Muscle (Moved to paid)
+- 1559785 - Fangs (Hiatus)
