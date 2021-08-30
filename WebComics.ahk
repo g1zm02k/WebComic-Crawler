@@ -6,7 +6,6 @@ If !FileExist("Logs")                                      ;Create Log folder
   FileCreateDir,% "Logs"
 If !FileExist("Backups")                                   ;Create Backup folder
   FileCreateDir,% "Backups"
-FileCopy % PAG ".ahk",% "Backups\" A_ScriptName,1          ;Move initial script to backups
 
 OLD:=CUR
 
@@ -43,6 +42,7 @@ Loop{                                                      ;Primary loop
   }
 
   If ((CUR>OLD) || (CUR=1)){                               ;Next/First page
+    FileCopy % PAG ".ahk",% "Backups\" A_ScriptName,1      ;Move initial script to backups
     If TTL && (TTL!=-1){                                   ;Get title (if req.)
       RegExMatch(HTM,TTL,TT)
       If RegExMatch(TT1,"\\|/|:|\*|\?|""|<|>|\||&#039;|&#034;|&amp;|â€™|â€œ|&rsquo;| $")
@@ -72,7 +72,7 @@ Loop{                                                      ;Primary loop
       ExitApp
     }
   }
-  If RegExMatch(URL,NX1){                                  ;Recursive link found!
+  If (NX1=URL){                                            ;Recursive link found!
     MsgBox % "Recursive link!`n`nU: " URL "`nN: " NX1      ;TESTING LINE ONLY!
     NX1:=""                                                ;Clear it to exit normally
   }
@@ -80,7 +80,7 @@ Loop{                                                      ;Primary loop
     If (OLD!=CUR)
       TextAdd("Downloaded from " OLD " to " CUR ".")
     Else
-      TextAdd("`nUp to date.")
+      TextAdd("`nUp to date. (2)")
     Break
   }Else{
     If RegExMatch(NX1,"https?://")                         ;Check for full/partial URL
@@ -131,5 +131,5 @@ WriteSelf(PAG,URL,CUR){                                    ;Overwrite current st
   FileDelete % A_ScriptName
   TMP:=% RegExReplace(TMP,"`am)^URL:=.*","URL:=""" URL """")
   TMP:=% RegExReplace(TMP,"`am)^CUR:=.*","CUR:=" CUR)
-  FileAppend % TMP,% A_ScriptName
+  FileAppend % TMP,% A_ScriptName,UTF-8
 }

@@ -1,7 +1,7 @@
-If (A_ScriptName="Tapas.ahk"){
+﻿If (A_ScriptName="Tapas.ahk"){
   FLG:=0
   Loop{
-    InputBox URL, Tapas Generator,Only enter the digits from the right part of the URL...`ne.g. If the URL is https://tapas.io/episode/255222 then`nyou only have to enter 255222`, try it!
+    InputBox URL, Tapas Generator,Enter the digits from the right of the URL (after '/episode/'), try it!
     If ErrorLevel{
       ExitApp
     }Else{
@@ -48,13 +48,13 @@ IMG:="data-src=""(.*?)"""
 TTL:="ep-title"">([^<]+)<"
 PAU:="<h1>Coming Soon!<"
 OLD:=CUR
-LOC:="D:\Comics\_Read_\Webcomics\"
-Global TXT:="Running...`n",PAG
+LOC:="D:\Comics\Webcomics\"
+Global TXT:="Running...",PAG
 If FileExist(A_ScriptDir "\Icons\Tapas.ico")
   Menu Tray,Icon,% A_ScriptDir "\Icons\Tapas.ico"
 Gui Tapas:New,,Tapas
 Gui Font,s9,Consolas
-Gui Add,Edit,x0 y0 w800 h188 vEDT Center ReadOnly VScroll,% TXT
+Gui Add,Text,x0 y0 w800 h188 vEDT Center,% TXT
 Gui Show,w800 h188,Tapas
 
 If !FileExist(LOC PAG)
@@ -75,7 +75,7 @@ Loop {
   }
   If ((CUR>OLD) or (CUR=1)){
     RegExMatch(HTM,TTL,TT)
-    If RegExMatch(TT1,"\\|/|:|\*|\?|""|<|>|\||&#039;|&#034;|&amp;|â€™|&rsquo;| $")
+    If RegExMatch(TT1,"\\|/|:|\*|\?|""|<|>|\||&#039;|&#034;|&amp;|â€™|â€œ|&rsquo;| $")
       TT1:=StripCode(TT1)
     PGP:=1,PGN:=1
     TextAdd("`nDownloading from: " URL)
@@ -106,13 +106,13 @@ Loop {
 }
 WriteSelf(PAG,URL,CUR)
 TextAdd("`nPress <Space> to exit...")
-KeyWait Space, D
+KeyWait Space,D
 TapasGuiClose:
 FileDelete % PAG " (Tapas).bak"
 ExitApp
 
 TextAdd(TEX){
-  TXT:=% TXT TEX "`n"
+  TXT:=% TXT "`n" TEX
   TMP:=InStr(TXT,"`n",,0,13)
   If TMP
     TXT:=SubStr(TXT,TMP+1)
@@ -136,7 +136,7 @@ StripCode(STR){
   STR:=RegExReplace(STR,":|\|","-")
   STR:=RegExReplace(STR,"\?",".")
   STR:=RegExReplace(STR,"&amp;","&")
-  STR:=RegExReplace(STR,"&#039;|&#034;|&rsquo;|â€™","'")
+  STR:=RegExReplace(STR,"&#039;|&#034;|&rsquo;|â€™|â€œ","'") ;â€™t
   STR:=RegExReplace(STR," $","")
   Return STR
 }
@@ -146,5 +146,5 @@ WriteSelf(PAG,URL,CUR){
   FileDelete % PAG " (Tapas).ahk"
   TMP:=% RegExReplace(TMP,"`am)^URL:=.*", "URL:=""" URL """")
   TMP:=% RegExReplace(TMP,"`am)^CUR:=.*", "CUR:=" CUR)
-  FileAppend % TMP, % PAG " (Tapas).ahk"
+  FileAppend % TMP, % PAG " (Tapas).ahk",UTF-8
 }
